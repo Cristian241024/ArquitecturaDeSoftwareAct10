@@ -17,7 +17,7 @@ manager = UserManager()
 manager.add_user(user_obj)
 ```
 
-### 2. Adapter (AuthAdapter)
+### 2. Factory Method (Creacional)
 
 **Propósito:** Centralizar la creación de objetos usuario
 **Problema resuelto:** Flexibilidad para añadir nuevos tipos de usuario
