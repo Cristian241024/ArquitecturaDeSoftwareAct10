@@ -1,16 +1,44 @@
 from user_manager import UserManager
-from auth import LDAPAuth, DBAuth
-from notifier import EmailNotifier, UserSubject
+from user_factory import UserFactory
+from notifier import UserNotifier, EmailNotifier, LogNotifier
 
-# Singleton
-manager = UserManager()
-manager.add_user("001", {"name": "Alice"})
+def main():
+    # Configuración inicial
+    manager = UserManager()
+    notifier = UserNotifier()
+    
+    # Registrar notificadores
+    notifier.subscribe(EmailNotifier())
+    notifier.subscribe(LogNotifier())
+    
+    # Crear usuario admin
+    try:
+        admin = UserFactory.create_user(
+            "admin",
+            "user001",
+            "Ana López",
+            "ana@example.com"
+        )
+        
+        # Registrar usuario
+        print(manager.add_user(admin))
+        
+        # Notificar registro
+        notifier.notify("NUEVO_REGISTRO", admin)
+        
+        # Crear usuario regular
+        regular = UserFactory.create_user(
+            "regular",
+            "user002",
+            "Carlos Ruiz",
+            "carlos@example.com"
+        )
+        
+        print(manager.add_user(regular))
+        notifier.notify("NUEVO_REGISTRO", regular)
+        
+    except ValueError as e:
+        print(f"Error: {e}")
 
-# Adapter
-ldap_auth = LDAPAuth()
-print(ldap_auth.authenticate({"username": "alice"}))
-
-# Observer
-subject = UserSubject()
-subject.attach(EmailNotifier())
-subject.notify("Usuario registrado")
+if __name__ == "__main__":
+    main()
