@@ -15,32 +15,32 @@ Sistema centralizado para gestión de usuarios que implementa:
 ```python
 manager = UserManager()
 manager.add_user(user_obj)
+```
 
 ### 2. Adapter (AuthAdapter)
 
-Propósito: Centralizar la creación de objetos usuario
-Problema resuelto: Flexibilidad para añadir nuevos tipos de usuario
-Archivo:  user_factory.py
-Implementaciones:
-
+**Propósito:** Centralizar la creación de objetos usuario
+**Problema resuelto:** Flexibilidad para añadir nuevos tipos de usuario
+**Archivo:**  user_factory.py
+**Implementaciones:**
   -AdminUser
   -RegularUser
 
 ### 3. Observer - UserNotifier
 
-Propósito: Notificar eventos a múltiples sistemas
-Archivo: notifier.py
-Componentes:
+**Propósito:** Notificar eventos a múltiples sistemas
+**Archivo:** notifier.py
+**Componentes:**
 
-UserNotifier (Observable)
+  UserNotifier (Observable)
 
-EmailNotifier (Envía emails reales)
+  EmailNotifier (Envía emails)
 
-LogNotifier (Registra en sistema de logs)
+  LogNotifier (Registra en sistema de logs)
 
 ### 🚀 Cómo Ejecutar
-Clonar repositorio:
-https://github.com/Cristian241024/ArquitecturaDeSoftwareAct10.git
+**Clonar repositorio:**
+  https://github.com/Cristian241024/ArquitecturaDeSoftwareAct10.git
 
-Ejecutar:
-python main.py
+**Ejecutar:**
+  python main.py
